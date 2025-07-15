@@ -1,0 +1,46 @@
+{
+  "log": {
+    "level": "error",
+    "output": "/dev/null"
+  },
+  "dns": {
+    "servers": [
+      { "tag": "local", "address": "223.5.5.5", "address_strategy": "ipv4_only" }
+    ]
+  },
+  "inbounds": [
+    {
+      "type": "socks",
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "listen_port": 10808,
+      "sniff": true
+    },
+    {
+      "type": "vless",
+      "tag": "vless-in",
+      "listen": "127.0.0.1",
+      "listen_port": 23456,
+      "users": [
+        {
+          "uuid": "11111111-1111-1111-1111-111111111111",
+          "flow": "xtls-rprx-vision"
+        }
+      ],
+      "transport": {
+        "type": "ws",
+        "path": "/ws"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ]
+}
