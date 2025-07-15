@@ -4,7 +4,7 @@ set -e
 echo "🔧 初始化守护进程开始部署..."
 
 # 1. 安装 sing-box
-ARCH="s390x"
+ARCH=$(dpkg --print-architecture)
 VERSION=$(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep tag_name | cut -d '"' -f 4)
 URL="https://github.com/SagerNet/sing-box/releases/download/${VERSION}/sing-box-${VERSION}-linux-${ARCH}.tar.gz"
 
